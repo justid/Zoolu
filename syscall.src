@@ -1,0 +1,26 @@
+       .SECTION P,CODE,ALIGN=4
+
+       
+
+       .MACRO SYSCALL FUNO, SYSCALLNAME, TAIL=nop
+
+       .export \SYSCALLNAME'
+
+\SYSCALLNAME'
+
+       mov.l #h'\FUNO, r0
+
+       mov.l #H'80010070, r2
+
+       jmp @r2
+
+       \TAIL'
+
+       .ENDM
+
+       
+
+       SYSCALL 0376, _MCS_SearchDirectoryItem
+
+ 
+       .end
